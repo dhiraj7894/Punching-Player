@@ -11,10 +11,13 @@ public class _PlayerHandController : MonoBehaviour
     [SerializeField] private float longPressTime;
     private float force = 0;
 
+    public Collider LeftGlove;
+    public Collider RightGlove;
     public ParticleSystem superEffect;
     void Start()
     {
         handAnimation = GetComponent<Animator>();
+        desableCollider();
     }
     void Update()
     {
@@ -42,7 +45,7 @@ public class _PlayerHandController : MonoBehaviour
         {
             if (!longPress)
             {
-                force = 100;
+                force = 10;
                 downPressTime = 0;
                 if (handAnimation.GetCurrentAnimatorStateInfo(0).IsName("Left") && handAnimation.GetCurrentAnimatorStateInfo(0).IsName("Right"))
                     return;
@@ -74,10 +77,20 @@ public class _PlayerHandController : MonoBehaviour
 
     }
 
+    public void enableCollider()
+    {
+        LeftGlove.enabled = true;
+        RightGlove.enabled = true;
+    }
+    public void desableCollider()
+    {
+        LeftGlove.enabled = false;
+        RightGlove.enabled = false;
+    }
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.collider.name+" : Hit");
-        other.transform.GetComponent<Rigidbody>().AddForce(-other.transform.forward * force);
+        other.transform.GetChild(0).GetComponent<Animator>().Play("Hit");
+        other.transform.GetComponent<Rigidbody>().AddForce(-other.transform.forward * force, ForceMode.Impulse);
     }
 
 }
