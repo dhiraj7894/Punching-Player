@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Punch Man/_Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/3rd Party/Epic Toon FX/Demo/Scenes/etfx_maindemo.unity
+    guid: 8bd1bda334a6f2440817b9493f9d7703
   m_configObjects: {}

@@ -6,10 +6,10 @@ public class _PlayerHandController : MonoBehaviour
 {
     private Animator handAnimation;
     [SerializeField] private bool HandChecker;
-    [SerializeField] private bool longPress = false;
+    [HideInInspector] public bool longPress = false;
     [SerializeField] private float downPressTime;
     [SerializeField] private float longPressTime;
-    private float force = 0;
+                                  private float force = 0;
 
     public Collider LeftGlove;
     public Collider RightGlove;
@@ -45,7 +45,7 @@ public class _PlayerHandController : MonoBehaviour
         {
             if (!longPress)
             {
-                force = 10;
+                force = 0;
                 downPressTime = 0;
                 if (handAnimation.GetCurrentAnimatorStateInfo(0).IsName("Left") && handAnimation.GetCurrentAnimatorStateInfo(0).IsName("Right"))
                     return;
@@ -67,7 +67,7 @@ public class _PlayerHandController : MonoBehaviour
             }
             if (longPress)
             {
-                force = 10000;
+                force = 30;
                 downPressTime = 0;
                 handAnimation.Play("PowerHit");
                 superEffect.Stop();
@@ -89,8 +89,11 @@ public class _PlayerHandController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
+        if (longPress)
+        {
+            other.transform.GetComponent<_EnemyAIM>().CurrentHealth -= 2;
+        }
         other.transform.GetChild(0).GetComponent<Animator>().Play("Hit");
-        other.transform.GetComponent<Rigidbody>().AddForce(-other.transform.forward * force, ForceMode.Impulse);
+        //other.transform.GetComponent<Rigidbody>().AddForce(-other.transform.forward * force, ForceMode.Impulse);
     }
-
 }

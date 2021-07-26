@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Missile
+  - win
+  - Wall
+  - ENM
   layers:
   - Default
   - TransparentFX
@@ -15,8 +19,8 @@ TagManager:
   - 
   - EnemyAi
   - Player
-  - 
-  - 
+  - DeadEnemyAi
+  - Wall
   - 
   - 
   - 
