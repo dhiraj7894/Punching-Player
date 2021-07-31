@@ -34,8 +34,9 @@ public class _PlayerCameraController : MonoBehaviour
         if (!isPlayerPunchLevel)
         {
             movement();
+            lookEnemy();
         }
-        lookEnemy();
+        
         raycastSensor();
         
     }
