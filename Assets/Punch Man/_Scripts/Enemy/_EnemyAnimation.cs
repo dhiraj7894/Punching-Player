@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class _EnemyAnimation : MonoBehaviour
 {
+    public GameObject parantObj;
+
     public GameObject dummy;
     private Rigidbody dummyRb;
 
@@ -26,13 +28,12 @@ public class _EnemyAnimation : MonoBehaviour
         dummyRb.constraints = RigidbodyConstraints.None;
     }
 
-    public IEnumerator enableS(float t)
+    public void enableS(float t)
     {
-        yield return new WaitForSeconds(t);
-        FindObjectOfType<_EnemyThrower>().enemyAi.enabled = true;
-        FindObjectOfType<_EnemyThrower>().rb.isKinematic = false;
-        FindObjectOfType<_EnemyThrower>().enemyAi.Thrower = false;
-        FindObjectOfType<_EnemyThrower>().enemyAi.agent.enabled = true;        
-        FindObjectOfType<_EnemyThrower>().enabled = false;        
+        parantObj.GetComponent<_EnemyAIM>().agent.enabled = true;        
+        parantObj.GetComponent<_EnemyAIM>().enabled = true;
+        parantObj.GetComponent<_EnemyThrower>().rb.isKinematic = false;
+        parantObj.GetComponent<_EnemyAIM>().Thrower = false;
+        parantObj.GetComponent<_EnemyThrower>().enabled = false;        
     }
 }

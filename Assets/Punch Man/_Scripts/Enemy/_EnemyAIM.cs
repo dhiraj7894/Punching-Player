@@ -7,9 +7,9 @@ using UnityEngine.AI;
 public class _EnemyAIM : MonoBehaviour
 {
     public List<GameObject> coll = new List<GameObject>();
-    [HideInInspector]public NavMeshAgent agent;
+    public NavMeshAgent agent;
 
-    private GameObject Player;
+    public GameObject Player;
     private Animator demonAnime;
     [HideInInspector]public Rigidbody rb;
     
@@ -22,7 +22,7 @@ public class _EnemyAIM : MonoBehaviour
     private float turnSmoothVelocity;
 
     public LayerMask WhatIsPlayer;
-    [HideInInspector]public  float CurrentHealth;
+    public  float CurrentHealth;
     public float maxHealth = 75;
     public float timeBetweenAttack;
     public float sightRange, attackRange;
@@ -35,9 +35,9 @@ public class _EnemyAIM : MonoBehaviour
     private bool isPlayerInSightRange, isPlayerInAttackRange;
 
 
-    void Awake()
+    private void Start()
     {
-        Player = GameObject.Find("Hand Holder");
+        isDead = false;
         agent = this.GetComponent<NavMeshAgent>();
         demonAnime = transform.GetChild(0).GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -60,6 +60,16 @@ public class _EnemyAIM : MonoBehaviour
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
+        if (CurrentHealth <= 0 && !isDead)
+        {
+            CurrentHealth = 0;
+            healthMeter.gameObject.SetActive(false);
+            agent.speed = 0;
+            isDead = true;
+            Die();
+            //demonAnime.SetBool("Dead",true);
+        }
+
         if (!isDead && !Thrower && !dummy)
         {
             if (AnotherEnemy != null)
@@ -77,10 +87,13 @@ public class _EnemyAIM : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(Player.transform.position);
-        lookAtPlayer();
-        //demonAnime.SetBool("run", true);
-        demonAnime.SetBool("walk",true);
+        if (agent.enabled != false)
+        {
+            agent.SetDestination(Player.transform.position);
+            lookAtPlayer();
+            //demonAnime.SetBool("run", true);
+            demonAnime.SetBool("walk", true);
+        }
     }
 
     void lookAtPlayer()
@@ -116,14 +129,7 @@ public class _EnemyAIM : MonoBehaviour
     public void takeDamage(int damage)
     {
         CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
-        {
-            CurrentHealth = 0;
-            agent.isStopped = true;
-            isDead = true;
-            Die();
-            //demonAnime.SetBool("Dead",true);
-        }
+       
     }
     public void Die()
     {
@@ -135,7 +141,7 @@ public class _EnemyAIM : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         Destroy(coll[0].gameObject,0.2f);
         Destroy(coll[2].gameObject);
-        healthMeter.gameObject.SetActive(false);
+        
     }
 
     private void OnDrawGizmos()

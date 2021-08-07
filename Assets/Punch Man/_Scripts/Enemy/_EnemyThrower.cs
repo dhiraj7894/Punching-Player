@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class _EnemyThrower : MonoBehaviour
 {
-    private GameObject Target;
+    public GameObject Target;
     [HideInInspector]public Rigidbody rb;
 
     private bool isPlayerInSightRange;
@@ -16,7 +16,6 @@ public class _EnemyThrower : MonoBehaviour
     {
         enemyAi.enabled = false;
         rb = GetComponent<Rigidbody>();
-        Target = GameObject.Find("Hand Holder");
 
         rb.isKinematic = true;
     }

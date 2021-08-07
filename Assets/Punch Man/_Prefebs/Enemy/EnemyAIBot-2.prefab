@@ -527,6 +527,8 @@ MonoBehaviour:
   - {fileID: 4154885908729624578}
   - {fileID: 4154885907772211378}
   - {fileID: 6742843850904481841}
+  agent: {fileID: 0}
+  rb: {fileID: 0}
   AnotherEnemy: {fileID: 0}
   healthMeter: {fileID: 8178295170635359368}
   bloodPos: {fileID: 8839498256730593890}
@@ -538,9 +540,11 @@ MonoBehaviour:
   timeBetweenAttack: 1
   sightRange: 5
   attackRange: 1.4
-  rotationSmooth: 0.5
+  rotationSmooth: 0.02
   distFWal: 0
-  gotHitBack: 0
+  Boss: 0
+  Thrower: 0
+  dummy: 0
   distanceFromPlayer: 0
 --- !u!65 &3848457176847459224
 BoxCollider:

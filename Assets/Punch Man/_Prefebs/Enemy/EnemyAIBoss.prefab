@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855d4659259344340a725d2538da102a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   rb: {fileID: 0}
   enemyAi: {fileID: 579677563}
   sightRange: 7
@@ -211,10 +212,11 @@ MonoBehaviour:
   - {fileID: 2140332976101658141}
   - {fileID: 2140332974433518949}
   - {fileID: 7679061890060202783}
-  agent: {fileID: 0}
+  agent: {fileID: 1257230324454927340}
+  Player: {fileID: 0}
   rb: {fileID: 0}
   AnotherEnemy: {fileID: 0}
-  healthMeter: {fileID: 0}
+  healthMeter: {fileID: 6101776519666762214}
   bloodPos: {fileID: 0}
   WhatIsPlayer:
     serializedVersion: 2
@@ -224,7 +226,7 @@ MonoBehaviour:
   timeBetweenAttack: 1
   sightRange: 6.5
   attackRange: 1.4
-  rotationSmooth: 0.5
+  rotationSmooth: 0.02
   distFWal: 0
   Boss: 0
   Thrower: 1
@@ -336,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7fa3bc2cb869a48882c70c62178dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parantObj: {fileID: 1257230324454927341}
   dummy: {fileID: 0}
   force: 17
 --- !u!54 &8604969603789397978
