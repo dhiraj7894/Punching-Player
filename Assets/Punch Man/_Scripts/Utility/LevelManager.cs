@@ -61,18 +61,25 @@ public class LevelManager : MonoBehaviour
         Destroy(Levels);
         Levels = null;
 
-        if (Levels == null && levelNumber < 4)
+        if (Levels == null && levelNumber < 4 && levelNumber %4 !=0)
         {
             scoreText.text = (levelNumber + 1).ToString();
             Levels = Instantiate(gameLevels[levelNumber], Vector3.zero, Quaternion.identity);
             Levels.transform.parent = transform;
         }
 
-        if (Levels == null && levelNumber > 3)
+        if (Levels == null && levelNumber > 3 && levelNumber % 4 != 0)
         {
             number = Random.Range(0, 4);
             scoreText.text = (levelNumber + 1).ToString();
             Levels = Instantiate(gameLevels[number], Vector3.zero, Quaternion.identity);
+            Levels.transform.parent = transform;
+        }
+
+        if(levelNumber % 4 == 0 && Levels == null)
+        {
+            scoreText.text = (levelNumber + 1).ToString();
+            Levels = Instantiate(gameLevels[4], Vector3.zero, Quaternion.identity);
             Levels.transform.parent = transform;
         }
     }

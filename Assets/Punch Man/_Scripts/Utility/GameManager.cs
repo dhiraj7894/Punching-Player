@@ -86,5 +86,13 @@ public class GameManager : MonoBehaviour
                 moveTowardPoint = 2;
             }
         }
+
+        if (Level == 5)
+        {
+            if (EnemyKilled == 0)
+            {
+                //Stay at current place
+            }            
+        }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - win
   - Wall
   - ENM
+  - bag
   layers:
   - Default
   - TransparentFX
